@@ -1,12 +1,12 @@
 #@author narumeena
 #@description change mouse sORfs corrdinate to human sORFs coordinate 
 setwd("/Users/naru/Documents/GitHub/MousesORFMappingToHumanGenome")
-sORfsMouse <- read.delim("data/8175_sorfs_info.txt", header = FALSE)
+sORfsMouse <- read.delim("data/3604_sorfs_info.txt", header = FALSE)
 head(sORfsMouse) 
 
 sORfsMouse$allData <-  paste(sORfsMouse$V5, sORfsMouse$V6,sORfsMouse$V7,sORfsMouse$V8, sep = ",")
 
-#write.csv(sORfsMouse, file = "data/inputMousesORf.txt")
+#write.csv(sORfsMouse, file = "data/input3604MousesORf.txt")
 #install bedr
 ## try http:// if https:// URLs are not supported
 source("https://bioconductor.org/biocLite.R")

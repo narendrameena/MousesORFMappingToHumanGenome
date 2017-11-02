@@ -6,15 +6,17 @@ biocLite("GenomicRanges")
 library(GenomicRanges)
 
 #create a GRanges object given an object, my_refseq_loci
-head(my_refseq_loci,2)
+sORfs3604 <- read.delim("data/mappedHg38MouseSOrfs3604.txt", header = F)
+
+head(sORfs3604)
 #   refseq_mrna chromosome_name transcript_start transcript_end strand
 #1 NM_001084392           chr22         24313554       24316773      -
 #2    NM_001355           chr22         24313554       24322019      -
 
-my_refseq_gr <- with(my_refseq_loci,
-                        GRanges(chromosome_name,
-                                IRanges(transcript_start, transcript_end,names=refseq_mrna),
-                                strand
+my_refseq_gr <- with(sORfs3604,
+                        GRanges(sORfs3604$V1,
+                                IRanges(sORfs3604$V2, sORfs3604$V3),
+                                sORfs3604$V4
                         )
                       )
 my_refseq_gr
@@ -37,16 +39,20 @@ my_refseq_gr
 #    chr1 chr10 chr11 chr12 chr13 chr14 chr15 ...  chr6  chr7  chr8  chr9  chrX  chrY
 #      NA    NA    NA    NA    NA    NA    NA ...    NA    NA    NA    NA    NA    NA
 
+sORF8175 <- read.delim("data/mappedHg38MouseSOrfs.txt", header = F)
+
+head(sORF8175)
+
 #create another GRanges object
-my_random_gr <- with(my_random_loci,
-                     GRanges(chr,
-                             IRanges(start, end, names=row.names(my_random_loci)),
-                             strand
+my_random_gr <- with(sORF8175,
+                     GRanges(sORF8175$V1,
+                             IRanges(sORF8175$V2, sORF8175$V3),
+                             sORF8175$V4
                              )
                         )
 
 #how many overlap?
-table(countOverlaps(my_random_gr, my_refseq_gr))
+table((my_random_gr, my_refseq_gr))
 
 #    0     1     2     3     4     5     6     7     8     9    10    11    12    13 
 #41077  4955  2014   965   414   218   138    68    43    30    25     7    14    11 
@@ -63,8 +69,11 @@ table(my_overlap>0)
 #41077  8923
 
 #remove the overlapping ids from my_random_loci
-my_random_loci <- my_random_loci[my_overlap==0,]
+sORfs3604 <- sORfs3604[my_overlap>0,]
 
+write.csv(sORfs3604, file = "data/OverlapsORFs.txt")
+
+head(sORfs3604)
 #check the dimensions
-dim(my_random_loci)
+dim(sORfs3604)
 #[1] 41077     4
