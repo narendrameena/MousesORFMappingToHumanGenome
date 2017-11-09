@@ -3,17 +3,17 @@
 
 setwd("/Users/naru/Documents/GitHub/MousesORFMappingToHumanGenome")
 
-mutation <- read.delim("data/CosmicNonCodingVariants.txt", header = TRUE)
+mutation <- read.csv("data/egHGMD.csv", header = TRUE)
 
-#head(mutation)
+head(mutation)
 
 #add chr to every chromosome 
 mutation$X.CHROM <- paste("chr", mutation$X.CHROM, sep="")
 
 
-sORFs <- read.delim("data/mappedHg38MouseSOrfs.txt", header = FALSE)
+sORFs <- read.csv("data/egMappedhg19.csv", header = FALSE)
 
-#head(sORFs )
+head(sORFs )
 
 mutation$X.CHROM[1]
 
@@ -23,7 +23,7 @@ for(i in 1:length(mutation$X.CHROM )){
 for (j in 1:length(sORFs$V1)){
   if( mutation$X.CHROM[i] %in% sORFs$V1[j]){
     #print(mutation$X.CHROM[i])
-    #print(sORFs$V1[i])
+    #print(sORFs$V1[j])
     #print(sORFs$V2[i])
     #print(mutation$POS[i])
     #print(sORFs$V3[i])
