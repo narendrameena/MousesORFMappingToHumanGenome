@@ -4,8 +4,8 @@
 setwd("/Users/naru/Documents/GitHub/MousesORFMappingToHumanGenome")
 
 
-input <- readLines("da")
-output <- file("output.csv","w")
+input <- readLines("data/PrabakaransORFsExonic.faa")
+output <- file("data/PrabakaransORFsExonic.csv","w")
 
 currentSeq <- 0
 newLine <- 0
