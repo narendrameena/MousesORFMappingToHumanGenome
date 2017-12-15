@@ -11,7 +11,9 @@ head(mutation)
 mutation$X.CHROM <- paste("chr", mutation$X.CHROM, sep="")
 
 
-sORFs <- read.csv("data/egMappedhg19.csv", header = FALSE)
+sORFs <- read.csv("data/mappedHg38MouseSOrfs.txt", header = TRUE,sep=",")
+
+s
 
 head(sORFs )
 
