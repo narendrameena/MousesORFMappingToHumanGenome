@@ -8,7 +8,7 @@ import multiprocessing
 
 #higConfidentsORFsTblasnREsults_human_Dec14.csv tblatn results 
 
-tblastn = pd.read_csv('/Users/naru/Documents/GitHub/MousesORFMappingToHumanGenome/data/higConfidentsORFsTblasnREsults_human_Dec14.csv')
+tblastn = pd.read_csv('/Users/naru/Documents/GitHub/MousesORFMappingToHumanGenome/data/higConfidentsORFsTblasnREsultsHg38.csv')
 
 #print(tblastn)
 tblastn['sacc']
@@ -17,22 +17,22 @@ d= tblastn['send']
 
 #mappedHg19MouseSOrfsCsv  liftover results 
 
-liftOver = pd.read_csv('/Users/naru/Documents/GitHub/MousesORFMappingToHumanGenome/data/mappedHg19MouseSOrfsCsv.csv',header=None)
+liftOver = pd.read_csv('/Users/naru/Documents/GitHub/MousesORFMappingToHumanGenome/data/mappedHg38MouseSOrfs.csv',header=None)
 #print(liftOver)
 liftOver[0] #chrom 
 a= liftOver[1] #start
 b= liftOver[2] #end
 
-#print(a) #j
-#print(b) #j
-#print(c) #i
-#print(d) #i
+print(a) #j
+print(b) #j
+print(c) #i
+print(d) #i
 
 
 #print(sORFs)
 def mapAll(i):
     for j in range(len(liftOver[0])):
-         with open("data/OverlapedsORfsoftblastnAndliftOverHg19.csv",'a') as gh:
+         with open("data/OverlapedsORfsoftblastnAndliftOverHg38.csv",'a') as gh:
             writer= csv.writer(gh)
             if(tblastn['sacc'][i]==liftOver[0][j]):
                 if [j] <= c[i] and c[i] <= b[j] and b[j] <= d[i]:

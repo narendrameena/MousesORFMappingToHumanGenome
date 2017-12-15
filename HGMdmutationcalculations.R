@@ -3,7 +3,7 @@
 setwd("/Users/naru/Documents/GitHub/MousesORFMappingToHumanGenome/data/")
 library(data.table)
 
-overlap <- read.table("OverlapedsORfsoftblastnAndliftOverHg19.csv",sep=",", header=F)
+overlap <- read.table("OverlapedsORfsoftblastnAndliftOverHg38.csv",sep=",", header=F)
 head(overlap) 
 
 
